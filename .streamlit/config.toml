@@ -1,0 +1,6 @@
+[runner]
+magicEnabled = true
+fastReruns = true
+
+[theme]
+base="dark"
