@@ -1,0 +1,7 @@
+[project]
+name = "vipshop_sims"
+version = "0.1.0"
+description = "Vipshop Sales and Inventory Management System"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = ["plotly>=5.24.1", "polars>=1.16.0", "streamlit>=1.40.2"]
