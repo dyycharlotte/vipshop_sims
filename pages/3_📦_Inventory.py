@@ -25,6 +25,7 @@ with st.expander("Trunover Analysis", expanded=True):
     sales_col = f"Sales({n_month}M)"
     avg_sales_col = f"AvgSales({n_month}M)"
     quantity_col = f"Quantity({n_month}M)"
+    quantity_col_rename = f"UnitSold({n_month}M)"
     avg_quantity_col = f"AvgQuantity({n_month}M)"
     avg_quantity_col_rename = f"AvgUnitSold({n_month}M)"
 
@@ -34,6 +35,7 @@ with st.expander("Trunover Analysis", expanded=True):
         group_cat,
         sales_col,
         avg_sales_col,
+        quantity_col,
         avg_quantity_col,
         "StockValue",
         "Stock",
@@ -44,6 +46,7 @@ with st.expander("Trunover Analysis", expanded=True):
     turnover_brand = "Turnover"
     cols_brand = [
         group_brand,
+        sales_col,
         avg_sales_col,
         quantity_col,
         avg_quantity_col,
@@ -71,6 +74,9 @@ with st.expander("Trunover Analysis", expanded=True):
             "DollarTurnover": st.column_config.NumberColumn("Turnover"),
             sales_col: st.column_config.LineChartColumn(width="meidum", y_min=0.0),
             avg_sales_col: st.column_config.NumberColumn(format="$%d"),
+            quantity_col: st.column_config.LineChartColumn(
+                quantity_col_rename, width="meidum", y_min=0.0
+            ),
             avg_quantity_col: st.column_config.NumberColumn(avg_quantity_col_rename),
             "StockValue": st.column_config.NumberColumn(format="$%d"),
         },
@@ -95,7 +101,11 @@ with st.expander("Trunover Analysis", expanded=True):
     st.dataframe(
         df_brand_turnover,
         column_config={
-            quantity_col: st.column_config.LineChartColumn(width="meidum", y_min=0.0),
+            sales_col: st.column_config.LineChartColumn(width="meidum", y_min=0.0),
+            avg_sales_col: st.column_config.NumberColumn(format="$%d"),
+            quantity_col: st.column_config.LineChartColumn(
+                quantity_col_rename, width="meidum", y_min=0.0
+            ),
             avg_quantity_col: st.column_config.NumberColumn(avg_quantity_col_rename),
             "Stock": st.column_config.NumberColumn(format="%d"),
         },
